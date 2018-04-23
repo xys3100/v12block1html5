@@ -14,12 +14,30 @@
   </head>
   <body>
     <div class="webgl-content">
-      <div id="gameContainer" style="width: 338px; height: 600px"></div>
+      <div id="gameContainer" style="width: 960px; height: 600px"></div>
       <div class="footer">
         <div class="webgl-logo"></div>
         <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
         <div class="title">STAR FIGHTER ZERO</div>
       </div>
     </div>
+<script>
+  const doc = document.documentElement;
+  const content = document.querySelector('.webgl-content');
+  setInterval(function() {
+    const c = document.querySelector('canvas');
+    if (!c) { return }
+    if (doc.clientWidth <= c.clientWidth) {
+      const scale = doc.clientWidth / c.clientWidth;
+      content.style.transformOrigin = 'top left';
+      content.style.top = content.style.left = '0';
+      content.style.transform = 'scale(' + scale + ')';
+    } else {
+      content.style.transformOrigin = '';
+      content.style.top = content.style.left = '';
+      content.style.transform = '';
+    }
+  }, 1000);
+</script>
   </body>
 </html>
